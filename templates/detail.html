@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block header %}
+POST DETAIL
+{% endblock header %}
+
+
+{% block post %}
+
+<article class="entry entry-single">
+
+    <div class="entry-img">
+      <img src="{{mypost.image.url}}" alt="" class="img-fluid">
+    </div>
+
+    <h2 class="entry-title">
+      <a href="/detail/{{mypost.id}}/">{{mypost.title}}</a>
+    </h2>
+
+    <div class="entry-meta">
+      <ul>
+        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">{{mypost.author.user.username}}</a></li>
+        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">{{mypost.created_date}}</time></a></li>
+        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">{{count_comments}} Comments</a></li>
+      </ul>
+    </div>
+
+    <div class="entry-content">
+
+      <p>
+            {{mypost.body}}
+      </p>
+
+    </div>
+
+    <div class="entry-footer">
+
+    <i class="bi bi-tags"></i>
+      <ul class="tags">
+        {% for tag in mypost.tag.all %}
+
+            <li><a href="#">{{tag.name}}</a></li>
+
+        {% endfor %}
+        
+      </ul>
+    </div>
+
+  </article><!-- End blog entry -->
+
+  <div class="blog-author d-flex align-items-center">
+    <img src="assets/img/blog/blog-author.jpg" class="rounded-circle float-left" alt="">
+    <div>
+      <h4>Jane Smith</h4>
+      <div class="social-links">
+        <a href="https://twitters.com/#"><i class="bi bi-twitter"></i></a>
+        <a href="https://facebook.com/#"><i class="bi bi-facebook"></i></a>
+        <a href="https://instagram.com/#"><i class="biu bi-instagram"></i></a>
+      </div>
+      <p>
+        Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum sed possimus accusantium. Quas repellat voluptatem officia numquam sint aspernatur voluptas. Esse et accusantium ut unde voluptas.
+      </p>
+    </div>
+  </div><!-- End blog author bio -->
+
+  <div class="blog-comments">
+
+    <h4 class="comments-count">{{count_comments}} Comments</h4>
+
+    <!-- COMMENTS LOGIC GOES HERE -->
+
+    {% for  comment in  comments %}
+      <div id="comment-1" class="comment">
+        <div class="d-flex">
+          <div class="comment-img"><img src="{% static 'images/User/team-5.jpg' %}" alt=""></div>
+          <div>
+            <h5><a href="">{{comment.username}}</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+            <time datetime="2020-01-01">{{comment.comment_date}}</time>
+            <p>
+                {{comment.body}}
+            </p>
+          </div>
+        </div>
+      </div><!-- End comment #1 -->
+    {% endfor %}
+
+    <div class="reply-form">
+      <h4>Leave a Reply</h4>
+      <p>Your email address will not be published. Required fields are marked * </p>
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <input name="name" type="text" class="form-control" placeholder="Your Name*">
+          </div>
+          <div class="col-md-6 form-group">
+            <input name="email" type="text" class="form-control" placeholder="Your Email*">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col form-group">
+            <input name="website" type="text" class="form-control" placeholder="Your Website">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col form-group">
+            <textarea name="body" class="form-control" placeholder="Your Comment*"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Post Comment</button>
+
+      </form>
+
+    </div>
+
+  </div><!-- End blog comments -->
+
+
+
+{% endblock %}

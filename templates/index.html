@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+
+{% block header %}
+BLOG
+{% endblock header %}
+
+
+{% block post %}
+  {% for  post in post_obj %}
+    <article class="entry">
+
+      <div class="entry-img">
+        <img src="{{post.image.url}}" alt="" class="img-fluid">
+      </div>
+
+      <h2 class="entry-title">
+        <a href="detail/{{post.id}}/">{{post.title}}</a>
+      </h2>
+
+      <div class="entry-meta">
+        <ul>
+          <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">{{post.author.user.username}}</a></li>
+          <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">{{post.created_date}}</time></a></li>
+          <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">{{post.category.name}}</a></li>
+          <!-- <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12</a></li> -->
+        </ul>
+      </div>
+
+      <div class="entry-content">
+        <p>
+          {{post.body | truncatechars:250}}
+        </p>
+        <div class="read-more">
+          <a href="/detail/{{post.id}}/">Read More</a>
+        </div>
+      </div>
+
+    </article>
+  {% endfor %}
+
+
+  <div class="blog-pagination">
+    <ul class="justify-content-center">
+      <li class="active"><a href="?page=1">FIRST</a></li>
+      {% if post_obj.has_previous %}
+        <li><a href="?page={{ post_obj.previous_page_number }}">PREVIOUS</a></li>
+      {% endif %}
+      <li class="active"><a href="#">{{ post_obj.number }}</a></li>
+      {% if post_obj.has_next %}
+        <li><a href="?page={{ post_obj.next_page_number }}">NEXT</a></li>
+      {% endif %}
+      <li class="active"><a href="?page={{ post_obj.paginator.num_pages }}">LAST</a></li>
+    </ul>
+  </div>
+
+
+
+
+{% endblock post %}
