@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block header %}
-LOGIN 
+{% if messages %}
+    {% for message in messages %}
+        {{message}}
+    {% endfor %}
+{% endif %}
 {% endblock header %}
 
 {% block form %}
@@ -12,17 +16,13 @@ LOGIN
 
       <div class="row">
         <div class="offset-md-3  col-lg-6">
-          <form  class="php-email-form">
+          <form  class="myform" action="/login/" method="POST">
+            {% csrf_token %}
             <div class="form-group mt-3">
               <input type="text" class="form-control" name="username" id="subject" placeholder="Username" required>
             </div>
             <div class="form-group mt-3">
               <input type="password" class="form-control" name="password" id="subject" placeholder="Password" required>
-            </div>
-            <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
             </div>
             <div class="text-center"><button type="submit">LOGIN</button></div>
             <p class="text-center mt-3"> Already have an acount ? Then <a href="/signup/">SIGN UP </a> </p>

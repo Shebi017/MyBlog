@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
+    token = models.CharField(max_length=50,default="")
+    is_verified = models.BooleanField(default=False)
     image = models.ImageField(upload_to="Images/User",null=True,blank=True)
     eduction = models.TextField(null=True,blank=True)
     bio =  models.TextField(null=True,blank=True)

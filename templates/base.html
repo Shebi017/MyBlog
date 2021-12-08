@@ -39,8 +39,14 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="" href="#">Blog</a></li>
+          <li><a class="" href="/">BLOG</a></li>
+          {% if user is authanticated %}
           <li><a href="/login/">LOGIN</a></li>
+          {% else %}
+          <li><a href="/logout/">LOGOUT</a></li>
+          {% endif %}
+
+
           <!-- <li><a href="services.html">Services</a></li> -->
           <li><a href="#">PROFILE</a></li>
           <!-- <li><a href="contact.html">LOGIN</a></li> -->

@@ -6,4 +6,6 @@ urlpatterns =[
     path('detail/<int:pk>/',views.detail,name="detail"),
     path('signup/',views.signup,name="signup"),
     path('login/',views.userLogin,name="login"),
+    path('verify/<str:auth_token>/',views.verify,name="verify"),
+    path('logout/',views.userLogout,name="logout"),
 ]
