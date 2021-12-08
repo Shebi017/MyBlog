@@ -5,6 +5,57 @@
 BLOG
 {% endblock header %}
 
+{% block sidebar %}
+
+<div class="col-lg-4">
+      
+  <div class="sidebar">
+
+    <h3 class="sidebar-title">Search</h3>
+    <div class="sidebar-item search-form">
+      <form action="/" method="GET">
+        <!-- {% csrf_token %} -->
+        <input type="text" name="searchtext">
+        <button type="submit"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End sidebar search formn-->
+
+    <h3 class="sidebar-title">Categories</h3>
+    <div class="sidebar-item categories">
+      <ul>
+        {% for category  in categories %}
+            <li><a href="{% url 'index' %}?searchtext={{category.name}}">{{category.name}} <span>({{category.number_of_post}})</span></a></li>
+        {% endfor %}
+        
+      </ul>
+    </div><!-- End sidebar categories-->
+
+    <h3 class="sidebar-title">Recent Posts</h3>
+    <div class="sidebar-item recent-posts">
+        {% for post in latest_posts %}
+            <div class="post-item clearfix">
+                <img src="{{post.image.url}}" alt="">
+                <h4><a href="/detail/{{post.id}}/">{{post.title}}</a></h4>
+                <time datetime="2020-01-01">{{post.created_date}}</time>
+            </div>
+        {% endfor %}
+
+    </div><!-- End sidebar recent posts-->
+
+    <h3 class="sidebar-title">Tags</h3>
+    <div class="sidebar-item tags">
+      <ul>
+        {% for tag in tags%}
+            <li><a href="#">{{tag.name}}</a></li>
+        {% endfor %}
+      </ul>
+    </div><!-- End sidebar tags-->
+
+  </div><!-- End sidebar -->
+
+</div><!-- End blog sidebar -->
+
+{% endblock sidebar %}
 
 {% block post %}
   {% for  post in post_obj %}

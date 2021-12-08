@@ -71,3 +71,13 @@ def detail(request,pk):
         'count_comments':count_comments,
     }
     return render(request,"detail.html",context)
+
+
+
+
+def signup(request):
+    return render(request,"signup.html")
+
+
+def userLogin(request):
+    return render(request, "login.html")
