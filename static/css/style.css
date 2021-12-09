@@ -1371,6 +1371,14 @@ section {
   box-shadow: none;
   font-size: 14px;
 }
+
+.mytextarea {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+  padding: 12px 15px;
+
+}
 /* .contact .php-email-form input::focus, .contact .php-email-form textarea::focus {
   background-color: #68A4C4;
 } */

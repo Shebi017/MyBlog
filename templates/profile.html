@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block header %}
+{% if messages %}
+    {% for message in messages %}
+        {{message}}
+    {% endfor %}
+{% endif %}
+{% endblock header %}
+
+
+{% block form %}
+
+<section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+    <div class="container">
+
+      <div class="row">
+        <div class="offset-md-3  col-lg-6">
+          <form  class="myform" action="" method="POST">
+                {{form.as_p}}
+                
+                <button type="submit">SAVE</button>
+          </form>
+          
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+{% endblock  %}

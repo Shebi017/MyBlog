@@ -40,15 +40,15 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="" href="/">BLOG</a></li>
-          {% if user is authanticated %}
-          <li><a href="/login/">LOGIN</a></li>
-          {% else %}
+          {% if  is_authenticated %}
           <li><a href="/logout/">LOGOUT</a></li>
+          {% else %}
+          <li><a href="/login/">LOGIN</a></li>
           {% endif %}
 
 
           <!-- <li><a href="services.html">Services</a></li> -->
-          <li><a href="#">PROFILE</a></li>
+          <li><a href="/profile/">PROFILE</a></li>
           <!-- <li><a href="contact.html">LOGIN</a></li> -->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

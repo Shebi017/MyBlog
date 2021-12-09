@@ -8,6 +8,7 @@ import uuid
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib.auth import logout,authenticate,login,logout
+from .forms import ProfileForm
 
 # Create your views here.
 
@@ -170,4 +171,13 @@ def verify(request,auth_token):
 def userLogout(request):
     logout(request)
     return redirect('/login/')
-    
+
+
+def profile(request):
+    form = ProfileForm()
+
+    context={
+        'form':form,
+    }
+
+    return render(request, "profile.html",context)

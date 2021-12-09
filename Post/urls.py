@@ -8,4 +8,5 @@ urlpatterns =[
     path('login/',views.userLogin,name="login"),
     path('verify/<str:auth_token>/',views.verify,name="verify"),
     path('logout/',views.userLogout,name="logout"),
+    path('profile/',views.profile,name="profile"),
 ]
